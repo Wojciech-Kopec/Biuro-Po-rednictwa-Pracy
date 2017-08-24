@@ -1,0 +1,18 @@
+<div align="center">
+    <br><br><br>
+    <hr>
+    <br><br>
+    <a href="javascript:history.back()"><b>Powrót do poprzedniej Strony</b></a>
+    <br>
+    <a href="index.jsp"><b>Powrót do Menu Głównego</b></a>
+    <br><br><br>
+    <p>Projekt wykonany na zajęcia z przedmiotu <b>Projektowanie Systemów Baz Danych</b>
+        prowadzone przez <b>dr. inż. Zbigniewa Wrone</b></p>
+    <p>Aplikacja wykonana przez:</p>
+        <b>Wojciech Kopeć 24214&emsp;&emsp;
+            Jacek Sokołowski 24092&emsp;&emsp;
+            Marcin Mazur 24019&emsp;&emsp;
+            Bartosz Tarnowski 24138
+        <br><br>
+        2017</b>
+</div>

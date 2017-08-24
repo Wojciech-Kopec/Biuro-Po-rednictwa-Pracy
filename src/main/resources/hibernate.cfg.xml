@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-configuration SYSTEM
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+    <session-factory>
+        <!-- Dialect5 is used instead of default Dialect which is using deprecated parameter "Type" -->
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</property>
+        <!-- Default driver without "cj." is deprecated -->
+        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+        <!-- serverTImezone defined because of timezones conflicts -->
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/jobcenterdb?serverTimezone=UTC</property>
+        <property name="hibernate.connection.requireSSL">false</property>
+        <property name="hibernate.connection.username">owner</property>
+        <property name="hibernate.connection.password">admin</property>
+        <!-- Enable Hibernate's automatic session context management -->
+        <property name="hibernate.current_session_context_class">thread</property>
+        <!-- Echo all executed SQL to stdout -->
+        <property name="hibernate.show_sql">true</property>
+        <!-- Process existing schema -->
+        <property name="hibernate.hbm2ddl.auto">update</property>
+        <property name="hibernate.id.new_generator_mappings">false</property>
+        <!-- Autocommit set to TRUE to avoid managing Transactions in DB -->
+        <property name="hibernate.connection.autocommit">true</property>
+
+        <mapping class="model.JobOffer"/>
+        <mapping class="model.Candidate"/>
+        <mapping class="model.Company"/>
+    </session-factory>
+</hibernate-configuration>
