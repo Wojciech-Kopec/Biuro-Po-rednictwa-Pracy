@@ -1,9 +1,9 @@
-package dao;
+package com.wojciech.kopec.dao;
 
-import model.Candidate;
-import model.JobOffer;
+import com.wojciech.kopec.model.Candidate;
+import com.wojciech.kopec.model.JobOffer;
 import org.hibernate.HibernateException;
-import util.HibernateUtil;
+import com.wojciech.kopec.util.HibernateUtil;
 
 import java.util.ArrayList;
 import java.util.HashSet;

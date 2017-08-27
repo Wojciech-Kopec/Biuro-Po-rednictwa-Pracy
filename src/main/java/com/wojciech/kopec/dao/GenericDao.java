@@ -1,4 +1,4 @@
-package dao;
+package com.wojciech.kopec.dao;
 
 import java.io.Serializable;
 import java.util.List;

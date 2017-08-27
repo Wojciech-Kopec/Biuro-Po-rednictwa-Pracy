@@ -1,14 +1,13 @@
-package dao;
+package com.wojciech.kopec.dao;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import util.HibernateUtil;
+import com.wojciech.kopec.util.HibernateUtil;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import javax.transaction.Transactional;
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
