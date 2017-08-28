@@ -10,21 +10,22 @@
         <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
         <!-- serverTImezone defined because of timezones conflicts -->
         <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/jobcenterdb?serverTimezone=UTC</property>
-        <property name="hibernate.connection.requireSSL">false</property>
+        <property name="hibernate.connection.useSSL">false</property>
         <property name="hibernate.connection.username">owner</property>
         <property name="hibernate.connection.password">admin</property>
         <!-- Enable Hibernate's automatic session context management -->
         <property name="hibernate.current_session_context_class">thread</property>
         <!-- Echo all executed SQL to stdout -->
         <property name="hibernate.show_sql">true</property>
+        <property name="connection.createDatabaseIfNotExist">true</property>
         <!-- Process existing schema -->
         <property name="hibernate.hbm2ddl.auto">update</property>
         <property name="hibernate.id.new_generator_mappings">false</property>
         <!-- Autocommit set to TRUE to avoid managing Transactions in DB -->
         <property name="hibernate.connection.autocommit">true</property>
 
-        <mapping class="model.JobOffer"/>
-        <mapping class="model.Candidate"/>
-        <mapping class="model.Company"/>
+        <mapping class="com.wojciech.kopec.model.JobOffer"/>
+        <mapping class="com.wojciech.kopec.model.Candidate"/>
+        <mapping class="com.wojciech.kopec.model.Company"/>
     </session-factory>
 </hibernate-configuration>

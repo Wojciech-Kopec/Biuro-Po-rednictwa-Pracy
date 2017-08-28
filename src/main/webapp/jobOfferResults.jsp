@@ -1,6 +1,6 @@
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="model.JobOffer" %>
-<%@ page import="model.Candidate" %>
+<%@ page import="com.wojciech.kopec.model.Candidate" %>
+<%@ page import="com.wojciech.kopec.model.JobOffer" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 

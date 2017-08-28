@@ -1,10 +1,9 @@
 package com.wojciech.kopec.dao;
 
-import com.wojciech.kopec.model.Candidate;
 import com.wojciech.kopec.model.JobOffer;
 import org.hibernate.HibernateException;
 import com.wojciech.kopec.util.HibernateUtil;
-
+import com.wojciech.kopec.model.Candidate;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -24,15 +23,14 @@ public class CandidateDao extends GenericDaoImpl<Candidate> {
             Set<String> matchedQualifications = new HashSet<>(jobOffer.getRequiredQualifications());
             matchedQualifications.addAll(candidate.getExperiences());
 
-            for (String qualification : matchedQualifications) {
-                bothListsElements.remove(qualification);
-            }
+            bothListsElements.removeAll(matchedQualifications);
             if (bothListsElements.size() > 2)
                 matchedCandidates.add(candidate);
         }
         return matchedCandidates;
     }
 
+    @Override
     public boolean update(Candidate candidate) {
         boolean result = false;
         try {

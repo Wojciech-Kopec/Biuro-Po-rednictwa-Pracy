@@ -22,9 +22,8 @@ public class JobOfferDao extends GenericDaoImpl<JobOffer> {
             Set<String> matchedQualifications = new HashSet<>(candidate.getExperiences());
             matchedQualifications.addAll(jobOffer.getRequiredQualifications());
 
-            for(String qualification : matchedQualifications) {
-                bothListsElements.remove(qualification);
-            }
+            bothListsElements.removeAll(matchedQualifications);
+
             if (bothListsElements.size() > 2)
                 matchedJobOffers.add(jobOffer);
         }

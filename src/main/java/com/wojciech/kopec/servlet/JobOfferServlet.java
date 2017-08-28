@@ -1,9 +1,9 @@
-package servlet;
+package com.wojciech.kopec.servlet;
 
-import dao.CandidateDao;
-import dao.JobOfferDao;
-import model.Candidate;
-import model.JobOffer;
+import com.wojciech.kopec.dao.CandidateDao;
+import com.wojciech.kopec.dao.JobOfferDao;
+import com.wojciech.kopec.model.Candidate;
+import com.wojciech.kopec.model.JobOffer;
 
 import java.io.IOException;
 import java.util.ArrayList;

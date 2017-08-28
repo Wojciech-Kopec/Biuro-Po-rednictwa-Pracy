@@ -1,12 +1,12 @@
-package servlet;
+package com.wojciech.kopec.servlet;
 
-import dao.CompanyDao;
-import model.Company;
+import com.wojciech.kopec.dao.CompanyDao;
+import com.wojciech.kopec.model.Company;
 
 import java.io.IOException;
-import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
+
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -38,7 +38,7 @@ public class CompanyServlet extends HttpServlet {
         CompanyDao dao = new CompanyDao();
 
         Company company = null;
-        List<Company> companies = new ArrayList<model.Company>();
+        List<Company> companies = new ArrayList<>();
         String operation = null;
         boolean result = false;
         if ("search".equals(option)) {

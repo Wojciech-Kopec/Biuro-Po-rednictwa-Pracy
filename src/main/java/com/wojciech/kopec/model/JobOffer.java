@@ -1,4 +1,4 @@
-package model;
+package com.wojciech.kopec.model;
 
 import javax.persistence.*;
 import java.util.ArrayList;
