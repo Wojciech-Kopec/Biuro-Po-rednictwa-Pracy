@@ -51,7 +51,7 @@ public class GenericDaoImpl<T> implements GenericDao<T> {
     }
 
     public boolean update(T object) {
-        return false;
+        return true;
     }
 
     public boolean delete(T object) {

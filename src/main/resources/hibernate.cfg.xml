@@ -6,10 +6,12 @@
     <session-factory>
         <!-- Dialect5 is used instead of default Dialect which is using deprecated parameter "Type" -->
         <property name="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</property>
+        <!-- InnoDB will be set as DB engine type -->
+        <property name="hibernate.dialect.storage_engine">innodb</property>
         <!-- Default driver without "cj." is deprecated -->
         <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-        <!-- serverTImezone defined because of timezones conflicts -->
-        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/jobcenterdb?serverTimezone=UTC</property>
+        <!-- serverTimezone defined because of timezones conflicts -->
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/biuroposrednictwapracydb</property>
         <property name="hibernate.connection.useSSL">false</property>
         <property name="hibernate.connection.username">owner</property>
         <property name="hibernate.connection.password">admin</property>
@@ -18,6 +20,7 @@
         <!-- Echo all executed SQL to stdout -->
         <property name="hibernate.show_sql">true</property>
         <property name="connection.createDatabaseIfNotExist">true</property>
+        <property name="connection.characterEncoding">utf8</property>
         <!-- Process existing schema -->
         <property name="hibernate.hbm2ddl.auto">update</property>
         <property name="hibernate.id.new_generator_mappings">false</property>

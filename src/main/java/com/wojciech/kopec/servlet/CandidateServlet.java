@@ -77,7 +77,6 @@ public class CandidateServlet extends HttpServlet {
         emailAddress = request.getParameter("emailAddress");
         experiences = request.getParameter("experiences");
         option = request.getParameter("option");
-
         jobOfferId = request.getParameter("jobOfferId");
     }
 
@@ -96,12 +95,12 @@ public class CandidateServlet extends HttpServlet {
             getAllEntities();
         } else if ("listMatching".equals(option)) {
             JobOfferDao jobOfferDao = new JobOfferDao();
-            jobOffer = jobOfferDao.read("id", jobOfferId);
+            jobOffer = jobOfferDao.read("ID", jobOfferId);
             getAllEntitiesMatching(jobOffer);
         }
     }
 
-    /** Method setRequestAttributes(HttpServletRequest request, HttpServletResponse response) is respondible for
+    /** Method setRequestAttributes(HttpServletRequest request, HttpServletResponse response) is responsible for
      * */
     private void setRequestAttributes(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         if ("update".equals(option)) {
@@ -121,33 +120,33 @@ public class CandidateServlet extends HttpServlet {
     }
 
     private void searchBy(String lastName) {
-        candidate = dao.read("lastName", lastName);
+        candidate = dao.read("NAZWISKO", lastName);
         result = candidate != null;
         operation = "Wyszukaj";
     }
 
-    private void addNewEntity() {
-        candidate = new Candidate(firstName, lastName, new Long(PESEL), sex.charAt(0), city, address,
-                new Long(contactNumber), emailAddress, new ArrayList<>(Arrays.asList((experiences).split("\\n"))));
+    private void addNewEntity(Candidate candidate) {
+        candidate = new Candidate(firstName, lastName, PESEL, sex.charAt(0), city, address,
+                contactNumber, emailAddress, new ArrayList<>(Arrays.asList((experiences).split("\\n"))));
         result = dao.create(candidate);
         operation = "Dodaj Osobę";
     }
 
-    private void getEntityToUpdate() {
-        candidate = dao.read("lastName", lastName);
+    private void getEntityToUpdate(String lastName) {
+        candidate = dao.read("NAZWISKO", lastName);
 
     }
 
-    private void updateEntity() {
-        candidate = new Candidate(firstName, lastName, new Long(PESEL), sex.charAt(0), city, address,
-                new Long(contactNumber), emailAddress, new ArrayList<>(Arrays.asList((experiences).split("\\n"))));
+    private void updateEntity(Candidate candidate) {
+        candidate = new Candidate(firstName, lastName, PESEL, sex.charAt(0), city, address,
+                contactNumber, emailAddress, new ArrayList<>(Arrays.asList((experiences).split("\\n"))));
         result = dao.update(candidate);
         operation = "Modyfikuj Osobę";
     }
 
-    private void deleteEntity() {
-        candidate = new Candidate(firstName, lastName, new Long(PESEL), sex.charAt(0), city, address,
-                new Long(contactNumber), emailAddress, new ArrayList<>(Arrays.asList((experiences).split("\\n"))));
+    private void deleteEntity(Candidate candidate) {
+        candidate = new Candidate(firstName, lastName, PESEL, sex.charAt(0), city, address,
+                contactNumber, emailAddress, new ArrayList<>(Arrays.asList((experiences).split("\\n"))));
         result = dao.delete(candidate);
         operation = "Usuń Osobę";
     }

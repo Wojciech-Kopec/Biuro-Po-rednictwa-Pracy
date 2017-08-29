@@ -1,35 +1,69 @@
 package com.wojciech.kopec.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "JOB_OFFERS")
+@Table(name = "OFERTY_PRACY")
 public class JobOffer {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID", columnDefinition = "INT(11) UNSIGNED")
     private int id;
-    @Column(columnDefinition = "VARCHAR(30) NOT NULL")
+
+    @NotNull
+    @Size(min = 15, max = 60)
+    @Column(name = "STANOWISKO")
     private String position;
-    @Column(columnDefinition = "VARCHAR(30) NOT NULL")
+
+    @NotNull
+    @Size(min = 1, max = 60)
+    @Column(name = "NAZWA_PRZEDSIĘBIORSTWA")
     private String companyName;
-    @Column(columnDefinition = "VARCHAR(255) NOT NULL")
+
+    @NotNull
+    @Size(min = 30)
+    @Column(name = "OPIS_OFERTY")
     private String description;
-    @Column(columnDefinition = "DOUBLE")
+
+    @NotNull
+    @Min(0)
+    @Max(1)
+    @Column(name = "WYMIAR_ETATU")
     private Double workingHours;
-    @Column(columnDefinition = "VARCHAR(30) NOT NULL")
+
+    @NotNull
+    @Size(min = 3, max = 30)
+    @Column(name = "TYP_UMOWY")
     private String contractType;
-    @Column(columnDefinition = "INT(2)")
+
+    @NotNull
+    @Min(0)
+    @Column(name = "WYMAGANY_STAŻ_LATA", precision = 2)
     private Integer requiredYearsOfExperience;
+
     @ElementCollection(fetch = FetchType.EAGER)
-    @CollectionTable(name = "JOB_OFFER_REQUIREMENTS", joinColumns = @JoinColumn(name = "id"))
+    @CollectionTable(name = "OFERTY_PRACY_WYMAGANIA", joinColumns = @JoinColumn(name = "ID"))
     private List<String> requiredQualifications;
-    @Column(columnDefinition = "INT(5)")
+
+    @NotNull
+    @Min(0)
+    @Max(50000)
+    @Column(name = "PENSJA_MINIMALNA")
     private Integer minSalary;
-    @Column(columnDefinition = "INT(5)")
+
+    @NotNull
+    @Min(0)
+    @Max(50000)
+    @Column(name = "PENSJA_MAKSYMALNA")
     private Integer maxSalary;
+
     @Temporal(TemporalType.DATE)
     private Date creationDate;
 

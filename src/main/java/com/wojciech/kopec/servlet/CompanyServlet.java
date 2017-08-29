@@ -46,15 +46,15 @@ public class CompanyServlet extends HttpServlet {
             result = company != null;
             operation = "search";
         } else if ("add".equals(option)) {
-            company = new Company(name, new Long(NIP), new Long(REGON), city, address, new Long(contactNumber), emailAddress);
+            company = new Company(name, NIP, REGON, city, address, contactNumber, emailAddress);
             result = dao.create(company);
             operation = "add";
         } else if ("update".equals(option)) {
-            company = new Company(name, new Long(NIP), new Long(REGON), city, address, new Long(contactNumber), emailAddress);
+            company = new Company(name, NIP, REGON, city, address, contactNumber, emailAddress);
             result = dao.update(company);
             operation = "update";
         } else if ("delete".equals(option)) {
-            company = new Company(name, new Long(NIP), new Long(REGON), city, address, new Long(contactNumber), emailAddress);
+            company = new Company(name, NIP, REGON, city, address, contactNumber, emailAddress);
             result = dao.delete(company);
             operation = "delete";
         } else if ("listAll".equals(option)) {
