@@ -56,6 +56,7 @@ public class JobOfferServlet extends HttpServlet {
 
         try {
             executeDaoOperation();
+            setRequestAttributes(request,response);
         } catch (RuntimeException e) {
             dao.handleException(e);
             request.getRequestDispatcher("error.jsp").forward(request, response);
@@ -68,32 +69,62 @@ public class JobOfferServlet extends HttpServlet {
         if ("search".equals(option)) {
             searchBy();
         } else if ("add".equals(option)) {
-            jobOffer = new JobOffer(position, companyName, description, Double.valueOf(workingHours), contractType, Integer.valueOf(requiredYearsOfExperience), new ArrayList<>(Arrays.asList((requiredQualifications).split("\\n"))), Integer.valueOf(minSalary), Integer.valueOf(maxSalary));
-            result = dao.create(jobOffer);
-            operation = "Dodanie Oferty Pracy";
+            addNewEntity();
         } else if ("update".equals(option)) {
-            jobOffer = new JobOffer(position, companyName, description, Double.valueOf(workingHours), contractType, Integer.valueOf(requiredYearsOfExperience), new ArrayList<>(Arrays.asList((requiredQualifications).split("\\n"))), Integer.valueOf(minSalary), Integer.valueOf(maxSalary));
-            result = dao.update(jobOffer);
-            operation = "Modyfikacja Oferty Pracy";
+            updateEntity();
         } else if ("delete".equals(option)) {
-            jobOffer = new JobOffer(position, companyName, description, Double.valueOf(workingHours), contractType, Integer.valueOf(requiredYearsOfExperience), new ArrayList<>(Arrays.asList((requiredQualifications).split("\\n"))), Integer.valueOf(minSalary), Integer.valueOf(maxSalary));
-            result = dao.delete(jobOffer);
-            operation = "Usunięcia Oferty Pracy";
+            deleteEntity();
         } else if ("listAll".equals(option)) {
-            jobOffers = dao.listAll();
-            result = jobOffers != null;
-            operation = "Pokaż Wszystkie Oferty Pracy";
+            getAllEntities();
         } else if ("listMatching".equals(option)) {
-            CandidateDao candidateDao = new CandidateDao();
-            Candidate candidate = candidateDao.read("ID", candidateId);
-            jobOffers = dao.findJobOffersMatchingCandidate(candidate);
-            result = jobOffers != null;
-            request.setAttribute("candidate", candidate);
-            operation = "Znajdź Pasujące Oferty Pracy";
+            getAllJobOffersMatchingCandidate();
         } else if ("listCompanyOffers".equals(option)) {
-            jobOffers = dao.listAllByAttribute("NAZWA", companyName);
-            result = jobOffers != null;
-            operation = "Znajdź Oferty Firmy";
+            getAllJobOffersMatchingCompany();
+        }
+    }
+
+    private void getAllJobOffersMatchingCompany() {
+        jobOffers = dao.listAllByAttribute("NAZWA", companyName);
+        result = jobOffers != null;
+        operation = "Znajdź Oferty Firmy";
+    }
+
+    private void getAllJobOffersMatchingCandidate() {
+        CandidateDao candidateDao = new CandidateDao();
+        Candidate candidate = candidateDao.read("ID", candidateId);
+        jobOffers = dao.findJobOffersMatchingCandidate(candidate);
+        result = jobOffers != null;
+        operation = "Znajdź Pasujące Oferty Pracy";
+    }
+
+    private void getAllEntities() {
+        jobOffers = dao.listAll();
+        result = jobOffers != null;
+        operation = "Pokaż Wszystkie Oferty Pracy";
+    }
+
+    private void deleteEntity() {
+        jobOffer = new JobOffer(position, companyName, description, Double.valueOf(workingHours), contractType, Integer.valueOf(requiredYearsOfExperience), new ArrayList<>(Arrays.asList((requiredQualifications).split("\\n"))), Integer.valueOf(minSalary), Integer.valueOf(maxSalary));
+        result = dao.delete(jobOffer);
+        operation = "Usunięcia Oferty Pracy";
+    }
+
+    private void updateEntity() {
+        jobOffer = new JobOffer(position, companyName, description, Double.valueOf(workingHours), contractType, Integer.valueOf(requiredYearsOfExperience), new ArrayList<>(Arrays.asList((requiredQualifications).split("\\n"))), Integer.valueOf(minSalary), Integer.valueOf(maxSalary));
+        result = dao.update(jobOffer);
+        operation = "Modyfikacja Oferty Pracy";
+    }
+
+    private void addNewEntity() {
+        jobOffer = new JobOffer(position, companyName, description, Double.valueOf(workingHours), contractType, Integer.valueOf(requiredYearsOfExperience), new ArrayList<>(Arrays.asList((requiredQualifications).split("\\n"))), Integer.valueOf(minSalary), Integer.valueOf(maxSalary));
+        result = dao.create(jobOffer);
+        operation = "Dodanie Oferty Pracy";
+    }
+
+    private void setRequestAttributes(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        if ("listMatching".equals(option)) {
+            request.setAttribute("candidate", candidate);
         }
         if (jobOffer != null)
             jobOffers.add(jobOffer);

@@ -94,15 +94,20 @@ public class CandidateServlet extends HttpServlet {
         } else if ("listAll".equals(option)) {
             getAllEntities();
         } else if ("listMatching".equals(option)) {
-            JobOfferDao jobOfferDao = new JobOfferDao();
-            jobOffer = jobOfferDao.read("ID", jobOfferId);
-            getAllEntitiesMatching(jobOffer);
+            getAllEntitiesMatchingJobOffer();
         }
+    }
+
+    private void getAllEntitiesMatchingJobOffer() {
+        JobOfferDao jobOfferDao = new JobOfferDao();
+        jobOffer = jobOfferDao.read("ID", jobOfferId);
+        getAllEntitiesMatching(jobOffer);
     }
 
     /** Method setRequestAttributes(HttpServletRequest request, HttpServletResponse response) is responsible for
      * */
-    private void setRequestAttributes(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private void setRequestAttributes(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
         if ("update".equals(option)) {
             request.setAttribute("candidate", candidate);
             request.getRequestDispatcher("candidateModify.jsp").forward(request, response);
@@ -125,26 +130,26 @@ public class CandidateServlet extends HttpServlet {
         operation = "Wyszukaj";
     }
 
-    private void addNewEntity(Candidate candidate) {
+    private void addNewEntity() {
         candidate = new Candidate(firstName, lastName, PESEL, sex.charAt(0), city, address,
                 contactNumber, emailAddress, new ArrayList<>(Arrays.asList((experiences).split("\\n"))));
         result = dao.create(candidate);
         operation = "Dodaj Osobę";
     }
 
-    private void getEntityToUpdate(String lastName) {
+    private void getEntityToUpdate() {
         candidate = dao.read("NAZWISKO", lastName);
 
     }
 
-    private void updateEntity(Candidate candidate) {
+    private void updateEntity() {
         candidate = new Candidate(firstName, lastName, PESEL, sex.charAt(0), city, address,
                 contactNumber, emailAddress, new ArrayList<>(Arrays.asList((experiences).split("\\n"))));
         result = dao.update(candidate);
         operation = "Modyfikuj Osobę";
     }
 
-    private void deleteEntity(Candidate candidate) {
+    private void deleteEntity() {
         candidate = new Candidate(firstName, lastName, PESEL, sex.charAt(0), city, address,
                 contactNumber, emailAddress, new ArrayList<>(Arrays.asList((experiences).split("\\n"))));
         result = dao.delete(candidate);

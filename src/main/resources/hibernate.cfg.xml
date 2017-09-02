@@ -13,7 +13,7 @@
         <!-- serverTimezone defined because of timezones conflicts -->
         <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/biuroposrednictwapracydb</property>
         <property name="hibernate.connection.useSSL">false</property>
-        <property name="hibernate.connection.username">owner</property>
+        <property name="hibernate.connection.username">root</property>
         <property name="hibernate.connection.password">admin</property>
         <!-- Enable Hibernate's automatic session context management -->
         <property name="hibernate.current_session_context_class">thread</property>

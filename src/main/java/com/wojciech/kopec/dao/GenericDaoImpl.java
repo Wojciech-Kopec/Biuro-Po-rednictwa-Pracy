@@ -12,7 +12,7 @@ import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
-public class GenericDaoImpl<T> implements GenericDao<T> {
+public abstract class GenericDaoImpl<T> implements GenericDao<T> {
 
     private Class<T> type;
     protected Session session;
@@ -50,9 +50,11 @@ public class GenericDaoImpl<T> implements GenericDao<T> {
         return result;
     }
 
-    public boolean update(T object) {
-        return true;
-    }
+    /**
+     * Method used for updating selected Object in DB. Set as abstract as implementing classes' entities are custom and
+     * require different methods applied for this operation - different Setters are needed here.
+     */
+    public abstract boolean update(T object);
 
     public boolean delete(T object) {
         boolean result = false;

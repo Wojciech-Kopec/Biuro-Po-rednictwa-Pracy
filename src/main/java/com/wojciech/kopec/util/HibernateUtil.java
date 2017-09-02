@@ -4,6 +4,7 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 
 public class HibernateUtil {
@@ -11,7 +12,11 @@ public class HibernateUtil {
 
     static {
         try {
-            sessionFactory = new Configuration().configure("/resources/hibernate.cfg.xml").buildSessionFactory();
+            Configuration configuration = new Configuration().configure();
+            StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder().
+                    applySettings(configuration.getProperties());
+            sessionFactory = configuration.buildSessionFactory(builder.build());
+            //sessionFactory = new Configuration().configure("\\resources\\hibernate.cfg.xml").buildSessionFactory();
         } catch (Throwable ex) {
             System.out.println("Initial SessionFactory creation failed." + ex);
             throw new ExceptionInInitializerError(ex);
